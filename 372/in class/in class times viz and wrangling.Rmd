@@ -1,8 +1,10 @@
 ---
-title: "in class times, viz and wrangling"
+title: "In-class fun with dates, times, data viz and wrangling"
 author: "Tobin Turner"
-date: "2/9/2021"
-output: html_document
+date: "2/10/2021"
+output: 
+  html_document:
+    number_sections: true
 ---
 
 ```{r setup, include=FALSE}
@@ -10,15 +12,64 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-```{r load-packages, message=FALSE}
+```{r load-packages, message=FALSE, warning=FALSE}
 library("tidyverse")
 library("lubridate")
 library("nycflights13")
 ```
 
 
+# Let's make sure we like and understand dates and times:
 
-```{r, echo=FALSE, message=FALSE}
+## Point of these questions?
+
+-  Does every year have 365 days?
+-  Does every day have 24 hours?
+-  Does every minute have 60 seconds?
+
+## Do these code chunks make sense:
+
+
+```{r}
+today()
+now()
+```
+
+
+```{r}
+flights %>% 
+  select(year, month, day, hour, minute) %>% 
+  mutate(departure = make_datetime(year, month, day, hour, minute))
+```
+
+```{r}
+make_datetime_100 <- function(year, month, day, time) {
+  make_datetime(year, month, day, time %/% 100, time %% 100)
+}
+
+flights_dt <- flights %>% 
+  filter(!is.na(dep_time), !is.na(arr_time)) %>% 
+  mutate(
+    dep_time = make_datetime_100(year, month, day, dep_time),
+    arr_time = make_datetime_100(year, month, day, arr_time),
+    sched_dep_time = make_datetime_100(year, month, day, sched_dep_time),
+    sched_arr_time = make_datetime_100(year, month, day, sched_arr_time)
+  ) %>% 
+  select(origin, dest, ends_with("delay"), ends_with("time"))
+
+flights_dt
+```
+
+### Hadley says: "With this data, I can visualise the distribution of departure times across the year"
+```{r}
+flights_dt %>% 
+  ggplot(aes(dep_time)) + 
+  geom_freqpoly(binwidth = 86400) # 86400 seconds = 1 day
+```
+
+## The following code from the chapter is used.  Does it make sense?
+
+```{r}
 make_datetime_100 <- function(year, month, day, time) {
   make_datetime(year, month, day, time %/% 100, time %% 100)
 }
@@ -34,7 +85,7 @@ flights_dt <- flights %>%
   select(origin, dest, ends_with("delay"), ends_with("time"))
 ```
 
-The following code from the chapter is used
+
 ```{r}
 sched_dep <- flights_dt %>%
   mutate(minute = minute(sched_dep_time)) %>%
@@ -45,14 +96,13 @@ sched_dep <- flights_dt %>%
   )
 ```
 
-
-In the previous code, the difference between rounded and un-rounded dates provides the within-period time.
+## What do these do: `floor_date()`, `round_date()`, and `ceiling_date()`?
 
 ## Try these
 
-1. Use the graph to show how the average delay time changes over the course of a day. Your graph should answer, do flights get more late as the day goes on?
+1. Use a good old visual aid to illustrate if/how how the average delay time changes over the course of a day. Your graph should answer, do flights get more late as the day goes on?
 
-```{r, echo=FALSE, message=FALSE}
+```{r, eval=FALSE, echo=FALSE, message=FALSE}
 #16.3.4
 flights_dt %>%
   mutate(sched_dep_hour = hour(sched_dep_time)) %>%
@@ -66,7 +116,7 @@ flights_dt %>%
 
 2. On what day of the week should you leave if you want to minimize the chance of a delay? How do you know? Use a bar chart to show the average delay for each day of the week.
 
-```{r, echo=FALSE, message=FALSE}
+```{r, eval=FALSE, echo=FALSE, message=FALSE}
 # 16.3.5
 flights_dt %>%
   mutate(dow = wday(sched_dep_time)) %>%
@@ -95,7 +145,7 @@ flights_dt %>%
 
 3. Are early arrivals of flights caused more by scheduled flights that leave early or that make up time in the air?
 
-```{r, echo=FALSE, message=FALSE}
+```{r echo=FALSE, eval=FALSE, message=FALSE}
 # 16.3.7
 
 flights_dt %>% 
