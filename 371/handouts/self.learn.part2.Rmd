@@ -1,0 +1,203 @@
+---
+title: 'R: Self Learn Basics Part Deaux'
+author: "Tobin Turner"
+date: "2/10/2021"
+output: 
+  html_document:
+    number_sections: true
+---
+# Let's learn us some MORE R
+
+## Attaching to objects
+R includes a number of datasets that it is convenient to use for examples. You can get a description
+of what's available by typing
+
+```{r}
+data()
+```
+
+To access any of these datasets, you then type data(dataset) where dataset is the name of the
+dataset you wish to access. For example,
+
+```{r}
+data(trees)
+trees[1:5,]
+```
+
+
+
+gives us the first 5 rows of these data, and we can now see that the columns represent measurements
+of girth, height and volume of trees (actually cherry trees: see help(trees)) respectively. Now, if we want to work on the columns of these data, we can use the subscripting technique
+explained above: for example, trees[,2] gives all of the heights. This is a bit tedious however, and
+it would be easier if we could refer to the heights more explicitly. We can achieve this by attaching
+to the trees dataset:
+
+```{r}
+attach(trees)
+```
+
+
+Effectively, this makes the contents of trees a directory, and if we type the name of an object, R
+will look inside this directory to find it. Since Height is the name of one of the columns of trees, R now recognises this object when we type the name. Hence, for example,
+
+```{r}
+mean(Height)
+mean(trees[,2])
+```
+
+
+are synonymous, while it is easier to remember exactly what calculation is being performed by
+the first of these expressions. In actual fact, trees is an object called a dataframe, essentially a
+matrix with named columns (though a dataframe, unlike a matrix, may also include non-numerical
+variables, such as character names). Because of this, there is another equivalent syntax to extract,
+for example, the vector of heights:
+
+```{r}
+trees$Height
+```
+
+
+which can also be used without having first attached to the dataset.
+
+## Exercises
+
+1. Attach to the dataset quakes and produce a statistical summary of the variables depth and
+mag.
+2. Attach to the dataset mtcars and find the mean weight and mean fuel consumption for
+vehicles in the dataset (type help(mtcars) for a description of the variables available).
+
+## The apply function
+
+It is possible to write loops in R, but they are best avoided whenever possible. A common situation
+is where we want to apply the same function to every row or column of a matrix. For example,
+we may want to find the mean value of each variable in the trees dataset. Obviously, we could
+operate on each column separately but this can be tedious, especially if there are many columns.
+The function apply simplifies things. It is easiest understood by example:
+
+```{r}
+apply(trees,2,mean)
+```
+
+has the effect of calculating the mean of each column (dimension 2) of trees. We'd have used a 1
+instead of a 2 if we wanted the mean of every row.
+Any function can be applied in this way, though if optional arguments to the function are
+required these need to be specied as well - see help(apply) for further details.
+
+## Exercises
+
+1. Repeat the analyses of the datasets quakes and mtcars using the function apply to simplify
+the calculations.
+2. If
+y =
+
+```{r, echo =FALSE}
+y <- c(1,4,1,0,2,1)
+y <- matrix(y,nr=2,byrow = T)
+y
+```
+
+what is the result of apply(y[,2:3],1,mean)? Check your answer in R.
+
+## Graphics
+R has many facilities for producing high quality graphics. A useful facility before beginning is to
+divide a page into smaller pieces so that more than one figure can be displayed. For example:
+
+```{r eval=FALSE}
+par(mfrow=c(2,2))
+```
+
+creates a window of graphics with 2 rows and 2 columns. With this choice the windows are filled
+up row-wise. Use mfcol instead of mfrow to fill up column-wise. The function par is a general
+function for setting graphical parameters. There are many options: see help(par).
+
+So, for example
+
+```{r, out.width = '40%', fig.align = "center", fig.cap = "Figure 1: Tree heights and volumes"}
+par(mfrow=c(2,2))
+hist(Height)
+boxplot(Height)
+hist(Volume)
+boxplot(Volume)
+par(mfrow=c(1,1))
+```
+
+produces Figure 1. Note the final use of par to return the graphics window to standard size.
+```{r fig.cap = "Figure 2: Scatterplot of tree heights and volumes", out.width = '40%', fig.align = "center"}
+plot(Height,Volume)
+```
+
+We can also plot one variable against another using the function plot:
+
+```{r fig.cap = "Figure 3: Scatterplot matrix for tree data", out.width = '40%', fig.align = "center"}
+pairs(trees)
+```
+
+
+See Figure 3. Like many other functions plot is object-specic: its behaviour depends on the
+object to which it is applied. For example, if the object is a matrix, plot is identical to pairs: try
+plot(trees). For some other possibilities try:
+
+```{r eval=FALSE}
+data(nhtemp)
+plot(nhtemp)
+
+data(faithful)
+plot(faithful)
+
+data(HairEyeColor)
+plot(HairEyeColor)
+```
+
+
+There are also many optional arguments in most plotting functions that can be used to control
+colours, plotting characters, axis labels, titles etc. The functions points and lines are useful for
+adding points and lines respectively to a current graph. The function abline is useful for adding
+a line with specified intercept and slope.
+To print a graph, point the cursor over the graphics window and press the right button on the
+mouse. This should open up a menu which includes `print' as an option. You also have the option
+to save the figure in various formats, for example as a postscript file, for storage and later use.
+
+
+## Exercises
+
+1. Use
+> x<-rnorm(100)
+
+or something similar, to generate some data. Produce a figure showing a histogram and
+boxplot of the data. Modify the axis names and title of the plot in an appropriate way.
+
+2. Type the following
+```{r eval=FALSE}
+x<- (-10):10
+n<-length(x)
+y<-rnorm(n,x,4)
+plot(x,y)
+abline(0,1)
+```
+
+
+
+Try to understand the effect of each command and the graph that is produced.
+
+3. Type the following:
+
+```{r eval=FALSE}
+data(nhtemp)
+plot(nhtemp)
+```
+
+This produces a time series plot of measurements of annual mean temperatures in New Hampshire, U.S.A.
+
+4. The previous example illustrated that plot acts differently on objects of different types - the
+object nhtemp has the special class time series. More generally, we may have the data of
+yearly observations in a vector, but need to build the time series plot for ourselves. We can
+mimic this situation by typing
+
+`temp<-as.vector(nhtemp)`
+
+which creates a vector temp that contains only the annual temperatures. We can produce
+something similar to the time series plot by typing
+`plot(1912:1971,temp)`
+but this plots points rather than lines. To join the data via lines we would use
+`plot(1912:1971,temp,type='l')`
+instead. To get points and lines, use `type='b'` instead.

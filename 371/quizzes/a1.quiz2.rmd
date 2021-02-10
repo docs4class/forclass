@@ -1,0 +1,40 @@
+---
+title: "Quiz 2"
+output:
+  html_document: default
+---
+
+### Name:___________________________________
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##
+
+```{r, echo=FALSE}
+x <- matrix(1:15,nr=3)
+x
+```
+
+
+
+1. Write the code that creates this matrix:
+
+#
+#
+
+2. Write DIFFERENT code that creates this matrix in an alternate way:
+
+#
+#
+
+3. In the matrix above, what does `[,4]` mean?
+
+#
+
+4. What code would return the value in the 3rd column and 3rd row?
+
+#
+
+5. What single line of would give you the average of the all the numbers in columns 2, 4, and 5 and in rows 1 and 3?
