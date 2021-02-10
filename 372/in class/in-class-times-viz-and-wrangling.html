@@ -435,7 +435,7 @@ library(&quot;nycflights13&quot;)</code></pre>
 <pre class="r"><code>today()</code></pre>
 <pre><code>## [1] &quot;2021-02-10&quot;</code></pre>
 <pre class="r"><code>now()</code></pre>
-<pre><code>## [1] &quot;2021-02-10 10:14:09 EST&quot;</code></pre>
+<pre><code>## [1] &quot;2021-02-10 14:47:21 EST&quot;</code></pre>
 <pre class="r"><code>flights %&gt;% 
   select(year, month, day, hour, minute) %&gt;% 
   mutate(departure = make_datetime(year, month, day, hour, minute))</code></pre>
@@ -521,6 +521,8 @@ flights_dt &lt;- flights %&gt;%
 <div id="try-these" class="section level2">
 <h2><span class="header-section-number">1.5</span> Try these</h2>
 <ol style="list-style-type: decimal">
+<li><p>Look at the number of cancelled flights per day. Is there a pattern? Is the proportion of cancelled flights related to the average delay?</p></li>
+<li><p>Which carrier has the worst delays? Challenge: can you disentangle the effects of bad airports vs. bad carriers? Why/why not? (Hint: think about <code>flights %&gt;% group_by(carrier, dest) %&gt;% summarise(n())</code>)</p></li>
 <li><p>Use a good old visual aid to illustrate if/how how the average delay time changes over the course of a day. Your graph should answer, do flights get more late as the day goes on?</p></li>
 <li><p>On what day of the week should you leave if you want to minimize the chance of a delay? How do you know? Use a bar chart to show the average delay for each day of the week.</p></li>
 <li><p>Are early arrivals of flights caused more by scheduled flights that leave early or that make up time in the air?</p></li>

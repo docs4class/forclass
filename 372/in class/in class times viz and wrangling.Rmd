@@ -100,6 +100,28 @@ sched_dep <- flights_dt %>%
 
 ## Try these
 
+1. Look at the number of cancelled flights per day. Is there a pattern? Is the proportion of cancelled flights related to the average delay?
+
+```{r, echo=FALSE, warning=F, message=FALSE}
+# 5.6.7 Exercises # 4
+cancelled_per_day <- 
+  flights %>%
+  mutate(cancelled = (is.na(arr_delay) | is.na(dep_delay))) %>%
+  group_by(year, month, day) %>%
+  summarise(
+    cancelled_num = sum(cancelled),
+    flights_num = n(),
+  )
+```
+
+
+1. Which carrier has the worst delays? Challenge: can you disentangle the effects of bad airports vs. bad carriers? Why/why not? (Hint: think about `flights %>% group_by(carrier, dest) %>% summarise(n())`)
+
+```{r}
+
+```
+
+
 1. Use a good old visual aid to illustrate if/how how the average delay time changes over the course of a day. Your graph should answer, do flights get more late as the day goes on?
 
 ```{r, eval=FALSE, echo=FALSE, message=FALSE}
