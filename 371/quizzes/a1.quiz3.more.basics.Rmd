@@ -1,0 +1,60 @@
+---
+title: "Quiz 3"
+date: "2/15/2021"
+output: 
+  html_document:
+    number_sections: true
+---
+Name: __________________________
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r, echo=FALSE}
+df <- data.frame(matrix(1:100, nr=10))
+
+```
+
+
+```{r}
+df
+```
+
+1.  Consider the dataframe above called `df`.  What would running this code return `sum(df[7,7:10])`
+
+```{r, echo=FALSE, eval=FALSE}
+df <- data.frame(matrix(1:100, nr=10))
+sum(df[7,7:10])
+```
+
+2. How can you tell if an object in R is a dataframe?
+
+
+3. How could you create the dataframe above called `df`?
+
+
+4. What code would return the average of row 2 of `df`?
+
+
+5. Consider `mtcars` dataset that comes preloaded with R that looks like this:
+```{r out.width="50%"}
+head(mtcars)
+```
+
+6. Why do I get this error when I run the code below: `Error in plot(hp, mpg) : object 'hp' not found`?
+
+```{r eval=FALSE}
+plot(hp,mpg)
+```
+
+`Error in plot(hp, mpg) : object 'hp' not found`
+
+7. What code would generate this plot?
+
+```{r echo=FALSE, out.width="50%"}
+attach(mtcars)
+plot(hp,mpg)
+```
+
+Bonus: What is a topic that you find confusing at this point in class? 
