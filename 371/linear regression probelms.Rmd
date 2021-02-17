@@ -1,0 +1,41 @@
+---
+author: "Tobin Turner"
+date: "2/17/2021"
+output: 
+  html_document:
+    number_sections: true
+---
+
+# Linear Regression Worksheet
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Load and use help to understand the `women` dataset to answer the following questions:
+
+### Create this figure to predict the height of someone who is 110 inches tall using a graph.
+
+```{r echo=FALSE, out.width="30%", fig.align="center"}
+attach(women)
+m1 <- lm(weight~height,data = women)
+plot(height,weight)
+abline(m1)
+```
+
+### Precisely **precisely** the height of someone who is 110 inches tall.
+
+### Use the shoe size and height data from class to create a plot showing the relationship between height and shoe size.
+
+### Create a best fit line on this graph.
+
+### Predict the shoe size for a person 125 inches tall.
+
+### Predict the height of a person with a shoe size of 2.55
+
+### Create a graph that hours studied and GPA.
+ 
+### Create a best fit line between hours studied and GPA. Predict GPA of a person who studies 512 hours per week.
+
+### Create a best fit line between height and GPA. Does this look good? Predict GPA of a person who stands 90 inches tall.
