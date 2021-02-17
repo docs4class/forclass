@@ -8,6 +8,8 @@ output:
 
 # Linear Regression Worksheet
 
+## `women` dataset
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -15,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Load and use help to understand the `women` dataset to answer the following questions:
 
-### Create this figure to predict the height of someone who is 110 inches tall using a graph.
+### Create this figure to **guesstimate** the weight of someone who is 110 inches tall using a graph.
 
 ```{r echo=FALSE, out.width="30%", fig.align="center"}
 attach(women)
@@ -24,7 +26,9 @@ plot(height,weight)
 abline(m1)
 ```
 
-### Precisely **precisely** the height of someone who is 110 inches tall.
+### Calculate **precisely** the estimated weight of someone who is 110 inches tall.
+
+## Class Data 
 
 ### Use the shoe size and height data from class to create a plot showing the relationship between height and shoe size.
 
