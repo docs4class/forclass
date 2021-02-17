@@ -1,0 +1,58 @@
+---
+title: 'Quiz Chapter 8 Tree Methods'
+author: "Tobin Turner"
+date: "2/17/2021"
+output: 
+  html_document:
+    number_sections: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1.What are the advantages and disadvantages of decision trees?
+
+<br>
+<br>
+
+2.In this introduction to Chapter 8 what is meant by *"stratifying or segmenting the predictor space into a number of simple regions"*: 
+
+> In this chapter, we describe tree-based methods for regression and
+classification. These involve stratifying or segmenting the predictor space
+into a number of simple regions. In order to make a prediction for a given
+observation, we typically use the mean or the mode of the training observations in the region to which it belongs.
+
+
+<br>
+<br>
+
+3. What is pruning?  Why do we do it?
+
+<br>
+<br>
+
+4. What is bagging? 
+
+<br>
+<br>
+
+
+5. What is boosting?
+
+<br>
+<br>
+
+
+6. What are Random Forests?  No, really, what are they?
+
+<br>
+<br>
+
+7. What is the difference between classification and regression trees?
+
+
+
+
