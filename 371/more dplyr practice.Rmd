@@ -1,0 +1,31 @@
+---
+title: "`dplyr`practice makes perfect."
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Excersises
+
+Open the `storms` data from the `dplyr` package.  Use `?storms` to understand the data.  Then answer:
+
+1. How many observations have both wind speeds of greater than 20 knots and air pressure of more 1010 millibars? 
+2. How many observations have the storm name of Ana, Ernesto, Ophelia or Isidore? 
+3. What is the average wind speed for each category of storm? 
+4. For category 4 and 5 storms (combined) what is the average pressure? 
+5. Create a variable called strength which is pressure divided by wind speed.  What is the maximum strength in this data set? 
+
+Using the `nycflights13` dataset and the `dplyr` package, answer these questions.  Some answers are given in square brackets for you to check your answers.
+
+6. How many flights in Sept were late departing flights? [7815]
+7. How many flights in Sept were late departing flights that originated at JFK airport? [2649]
+8. How many flights in Sept were late departing flights with an origin of JFK airport and had an destination of anywhere except MIA? [2572]
+9. Which carrier had the most flights in this data set?  [UA with 58665]
+10. Which destination had the most flights in this data set? [ORD with 17283]
+11. Which destination had the most flights with departure delays of greater than 60 minutes in this data set? [ORD with 1480]
+12. What was the longest arrival delay in this dataset? [1272]
+13. Which carrier in September had the most late departing flights? [UA with 1559]
+14. Create a variable called total.annoyance which arrival delay plus the departure delay for each flight.
+15. Which carrier with more than 10 flights in September had greatest % late departing flights? 

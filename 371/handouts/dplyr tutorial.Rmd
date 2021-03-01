@@ -1,5 +1,5 @@
 ---
-title: "Enter `dplyr`.  Drop mic"
+title: "Enter `dplyr`.  Drop mic."
 output: html_document
 ---
 
