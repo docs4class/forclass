@@ -17,7 +17,7 @@ Open the `storms` data from the `dplyr` package.  Use `?storms` to understand th
 4. For category 4 and 5 storms (combined) what is the average pressure? 
 5. Create a variable called strength which is pressure divided by wind speed.  What is the maximum strength in this data set? 
 
-Using the `nycflights13` dataset and the `dplyr` package, answer these questions.  Some answers are given in square brackets for you to check your answers.
+Using the `nycflights13` package and the `flights` dataset, answer these questions.  Some answers are given in square brackets for you to check your answers.
 
 6. How many flights in Sept were late departing flights? [7815]
 7. How many flights in Sept were late departing flights that originated at JFK airport? [2649]
