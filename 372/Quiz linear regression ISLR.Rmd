@@ -1,0 +1,67 @@
+---
+title: "Quiz Linear Regression ISLR Ch 3"
+author: "Tobin Turner, adapted from ISLR Ch 3"
+date: "3/3/2021"
+output: 
+  html_document:
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Quiz ISLR Chapter 3 Linear Regression
+
+1. Define collinearity and give an example.
+
+<br>
+
+2. Define R^2^ and Adjusted R^2^
+
+<br>
+
+3. Explain least squares approach
+
+<br>
+
+4. Define p-value
+
+<br>
+
+5. In `m1`, below, which variables are significant predictors of Balance?  How do you know?
+
+```{r load-packages, message=FALSE, warning=FALSE}
+library("ISLR")
+data(Credit)
+attach(Credit)
+head(Credit)
+m1 <- lm(Balance ~ ., data = Credit)
+summary(m1)
+```
+
+6. How "good" is the model created in `m1`?  How do you know and how could you improve this model?
+
+<br>
+
+<br>
+
+7. Based on the model below, what would you predict the balance to be for an individual who is 40, has an income of $100,000, 16 years of education, is Asian and not a student? 
+```{r}
+m2 <- lm(Balance ~ Age + Income + Education + Ethnicity + Student, data = Credit)
+summary(m2)
+```
+
+<br>
+
+<br>
+
+8. Interpret this model and its output, especially the coefficients `Income:Education   0.3149`:
+```{r}
+m3 <- lm(Balance ~ Income*Education, data = Credit)
+summary(m3)
+```
+
+<br>
+
+9. Something you found new and interesting in this chapter?

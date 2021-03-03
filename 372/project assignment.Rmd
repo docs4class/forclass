@@ -47,7 +47,7 @@ This is a draft of the introduction section of your project as well as a
 data analysis plan and your dataset. Each section should be no more than 1 
 page (excluding figures). You can check a print preview to confirm length. 
 
-> Your write up and all analysis inlcuding visuals must be done using R Markdown.
+> Your write up and all analysis including visuals must be done using R Markdown.
 
 #### Section 1 - Introduction: 
 
