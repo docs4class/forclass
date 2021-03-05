@@ -46,7 +46,7 @@ summary(m1)
 
 <br>
 
-7. Based on the model below, what would you predict the balance to be for an individual who is 40, has an income of $100,000, 16 years of education, is Asian and not a student? 
+7. Based on the model below, what would you predict the balance to be for an individual who is 55, has an income of $100,000, 13 years of education, is Caucasian and is a student? 
 ```{r}
 m2 <- lm(Balance ~ Age + Income + Education + Ethnicity + Student, data = Credit)
 summary(m2)
