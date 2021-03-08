@@ -1,0 +1,52 @@
+---
+title: "Load us up some data from a file"
+author: "BADM 372"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+`tidyverse` contains
+
+`readr`
+
+Seven file formats are supported by the readr package:
+
+    read_csv(): comma separated (CSV) files
+    read_tsv(): tab separated files
+    read_delim(): general delimited files
+    read_fwf(): fixed width files
+    read_table(): tabular files where colums are separated by white-space.
+    read_log(): web log files
+
+`readxl`
+
+To import excel files (.xls and .xlsx):
+
+    read_excel()
+    read_xls()
+    read_xlsx()
+
+`haven`
+
+    read_sas() for SAS
+    read_sav() for SPSS
+    read_dta() for Stata 
+
+## This thing working?
+
+```{r, message=FALSE, warning=FALSE}
+getwd()
+ankle <- read.csv("C:/Users/jtturner/Desktop/ankle.csv")
+head(ankle)
+table(ankle$Ankle.Sprain)
+```
+
