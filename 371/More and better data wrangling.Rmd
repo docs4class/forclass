@@ -1,0 +1,66 @@
+---
+title: "More and better data wrangling"
+author: "BADM 371"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+> Check Out: https://dplyr.tidyverse.org/reference/
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(dplyr)
+options(max.print = 7)
+```
+
+```{r, warning=FALSE, message=FALSE, out.width = "50%"}
+# tally() is short-hand for summarise()
+mtcars %>% tally()
+mtcars %>% group_by(cyl) %>% tally()
+# count() is a short-hand for group_by() + tally()
+mtcars %>% count(cyl)
+# Note that if the data is already grouped, count() adds
+# an additional group that is removed afterwards
+mtcars %>% group_by(gear) %>% count(carb)
+# add_tally() is short-hand for mutate()
+mtcars %>% add_tally()
+# add_count() is a short-hand for group_by() + add_tally()
+mtcars %>% add_count(cyl)
+# count() and tally() are designed so that you can call them repeatedly, each time rolling up a level of detail
+species <-  starwars %>%
+ count(species, homeworld, sort = TRUE)
+species
+species %>% count(species, sort = TRUE)
+# Change the name of the newly created column:
+starwars %>%
+ count(species, homeworld, sort = TRUE, name = "n_species_by_homeworld")
+species %>%
+ count(species, sort = TRUE, name = "n_species")
+# add_count() is useful for groupwise filtering
+# e.g.: show details for species that have a single member
+starwars %>%
+  add_count(species) %>%
+  filter(n == 1)
+rename(iris, petal_length = Petal.Length)
+rename_with(iris, toupper)
+
+rename_with(iris, toupper, starts_with("Petal"))
+```
+
+# Excercises
+
+Using the `nycflights13` package and the `flights` dataset, answer these questions.  Some answers are given in square brackets for you to check your answers.
+
+1. Which destination had the most flights with departure delays of greater than 60 minutes in this data set? [ORD with 1480]
+2. What was the longest arrival delay in this dataset? [1272]
+3. Which carrier in September had the most late departing flights? [UA with 1559]
+4. Create a variable called total.annoyance which is arrival delay plus the departure delay for each flight.
+5. Find all flights that Were operated by United, American, or Delta.
+6. How many flights have a missing dep_time? 
+7. Which carrier with more than 10 flights in September had greatest % late departing flights? 
+
+
+

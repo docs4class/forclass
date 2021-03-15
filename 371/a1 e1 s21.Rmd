@@ -1,0 +1,38 @@
+---
+title: "A1 Exam 1 S21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr)
+data("storms")
+head(storms)
+```
+
+1. Create a variable called `inch.pressure` which is the pressure converted to inches.  What is the average `inch.pressure` for storms greater than category 3?
+
+```{r}
+q1 <- storms %>% 
+  mutate(inch.pressure = (pressure*0.0393701)) %>% 
+  filter(category>3) %>% 
+  summarise(mean(inch.pressure))
+q1
+```
+
+2. How many storms are category 1, 2, or 5?
+
+```{r}
+q2 <- storms %>% 
+  mutate(inch.pressure = (pressure*0.0393701)) %>% 
+  filter(category>3) %>% 
+  summarise(mean(inch.pressure))
+q2
+```
+
+
